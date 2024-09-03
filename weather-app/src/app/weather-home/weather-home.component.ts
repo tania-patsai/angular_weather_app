@@ -56,14 +56,14 @@ export class WeatherHomeComponent implements OnInit {
   private watchInputChanges(): void {
     //TODO: add takeUntil
     this.searchControl.valueChanges.pipe(
-      debounceTime(300),
+      tap(() => this.loading = true),
+      debounceTime(500),
       switchMap((value: string) => this.filter(value)),
     ).subscribe();
   }
 
   private filter(cityName: string): Observable<any | null> {
     return this.weatherDataService.searchWeather(cityName).pipe(
-      tap(() => this.loading = true),
       catchError(({error}) => {
         const err = error.cod === '404' ? {invalidCity: true} : {serverErr: true};
 

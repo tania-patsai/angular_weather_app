@@ -6,19 +6,22 @@
         <span>{{ currentWeather.date | date }}</span>
       </div>
 
-      <div>
-        <div>
-          <span>Current temperature: </span>
-          <span>{{ currentWeather.temp }}</span>
+      <div class="info">
+        <div >
+          <div>
+            <span>Current temperature: </span>
+            <span>{{ currentWeather.temp }}</span>
+          </div>
+          <div>
+            <span>Humidity: </span>
+            <span>{{ currentWeather.humidity }}</span>
+          </div>
+          <div>
+            <span>Description: </span>
+            <span>{{ currentWeather.description }}</span>
+          </div>
         </div>
-        <div>
-          <span>Humidity: </span>
-          <span>{{ currentWeather.humidity }}</span>
-        </div>
-        <div>
-          <span>Description: </span>
-          <span>{{ currentWeather.description }}</span>
-        </div>
+        <mat-icon class="material-icons-outlined" (click)="toggleFavorite()">{{ (this.isFavorite$ | async) ? 'star' :  'grade' }}</mat-icon>
       </div>
     </div>
 

@@ -1,8 +1,11 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {DatePipe, JsonPipe, NgForOf} from "@angular/common";
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AsyncPipe, DatePipe, JsonPipe, NgForOf} from "@angular/common";
 import {ICurrentWeatherData} from "../shared/interfaces/weather.interface";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatDivider} from "@angular/material/divider";
+import {MatIcon} from "@angular/material/icon";
+import {WeatherFavoritesService} from "../shared/services/weather-favorites.service";
+import {Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-weather-details',
@@ -13,15 +16,40 @@ import {MatDivider} from "@angular/material/divider";
     MatCardContent,
     MatDivider,
     NgForOf,
-    DatePipe
+    DatePipe,
+    MatIcon,
+    AsyncPipe
   ],
   templateUrl: './weather-details.component.html',
   styleUrl: './weather-details.component.scss'
 })
-export class WeatherDetailsComponent implements OnChanges {
+export class WeatherDetailsComponent implements OnChanges, OnInit {
   @Input() currentWeather!: ICurrentWeatherData;
+
+  isFavorite$!:Observable<boolean>;
+  isFavorite = false;
+
+  constructor(private favoritesService: WeatherFavoritesService) {
+  }
+
+  ngOnInit() {
+    this.isFavorite$ = this.favoritesService.isInFavorites$(this.currentWeather.name).pipe(tap(v => this.isFavorite = v));
+
+    this.isFavorite$.subscribe(res => console.log(res, 'IS FAVORITE'))
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes, 'CHANGES')
+  }
+
+  toggleFavorite(): void {
+    this.isFavorite = !this.isFavorite;
+
+    if (this.isFavorite) {
+      this.favoritesService.addToFavorites(this.currentWeather);
+    } else {
+      this.favoritesService.removeFromFavorites(this.currentWeather.name);
+    }
+
   }
 }
