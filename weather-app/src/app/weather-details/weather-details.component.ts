@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AsyncPipe, DatePipe, JsonPipe, NgForOf} from "@angular/common";
 import {ICurrentWeatherData} from "../shared/interfaces/weather.interface";
 import {MatCard, MatCardContent} from "@angular/material/card";
@@ -23,7 +23,7 @@ import {Observable, tap} from "rxjs";
   templateUrl: './weather-details.component.html',
   styleUrl: './weather-details.component.scss'
 })
-export class WeatherDetailsComponent implements OnChanges, OnInit {
+export class WeatherDetailsComponent implements OnInit {
   @Input() currentWeather!: ICurrentWeatherData;
 
   isFavorite$!:Observable<boolean>;
@@ -34,12 +34,6 @@ export class WeatherDetailsComponent implements OnChanges, OnInit {
 
   ngOnInit() {
     this.isFavorite$ = this.favoritesService.isInFavorites$(this.currentWeather.name).pipe(tap(v => this.isFavorite = v));
-
-    this.isFavorite$.subscribe(res => console.log(res, 'IS FAVORITE'))
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes, 'CHANGES')
   }
 
   toggleFavorite(): void {
@@ -50,6 +44,5 @@ export class WeatherDetailsComponent implements OnChanges, OnInit {
     } else {
       this.favoritesService.removeFromFavorites(this.currentWeather.name);
     }
-
   }
 }
