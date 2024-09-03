@@ -1,0 +1,36 @@
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+h1.weather-app-name {
+  margin-left: 8px;
+}
+
+.weather-sidenav-container {
+  flex: 1;
+}
+
+.weather-toolbar {
+  background: cadetblue;
+}
+
+.weather-is-mobile {
+  .weather-sidenav-container {
+    flex: 1 0 auto;
+  }
+
+  .weather-toolbar {
+    position: fixed;
+    z-index: 2;
+  }
+
+
+}
+
+

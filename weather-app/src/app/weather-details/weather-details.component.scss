@@ -1,0 +1,23 @@
+.card-width {
+  width: fit-content;
+}
+
+.details {
+  display: flex;
+  margin: 12px;
+
+  .city {
+    margin-right: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.forecast {
+  display: flex;
+
+  mat-card {
+    margin: 12px;
+    padding: 8px;
+  }
+}

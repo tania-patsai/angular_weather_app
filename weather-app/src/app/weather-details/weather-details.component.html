@@ -1,0 +1,38 @@
+<mat-card class="card-width">
+  <mat-card-content>
+    <div class="details">
+      <div class="city">
+        <span>{{ currentWeather.name }}</span>
+        <span>{{ currentWeather.date | date }}</span>
+      </div>
+
+      <div>
+        <div>
+          <span>Current temperature: </span>
+          <span>{{ currentWeather.temp }}</span>
+        </div>
+        <div>
+          <span>Humidity: </span>
+          <span>{{ currentWeather.humidity }}</span>
+        </div>
+        <div>
+          <span>Description: </span>
+          <span>{{ currentWeather.description }}</span>
+        </div>
+      </div>
+    </div>
+
+
+    <mat-divider></mat-divider>
+
+    <div class="forecast">
+      <mat-card *ngFor="let day of currentWeather.forecast">
+        <div>{{ day.dt_txt | date }}</div>
+        <div><span>{{ day.temp_min }}°C</span>/<span>{{ day.temp_max }}°C</span></div>
+        <div>{{ day.description }}</div>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
