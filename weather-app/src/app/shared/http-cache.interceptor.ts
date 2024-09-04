@@ -6,20 +6,19 @@ const requestsMap = new Map<
   {
     src: string;
     data: HttpResponse<any>;
-    params?: any;
-    ttl?: number;
+    ttl: number;
   }
 >();
 
 export const httpCacheInterceptor = (options: {
-  globalTTL: number;
+  ttl: number;
 }) => {
-  const {globalTTL} = options;
+  const {ttl} = options;
   const fn: HttpInterceptorFn = (req, next) => {
     const key = req.urlWithParams;
 
     const prevRequest = () => requestsMap.get(key);
-    const getTTL = () => new Date().getTime() + globalTTL;
+    const getTTL = () => new Date().getTime() + ttl;
 
     const prevReq = prevRequest();
 
@@ -28,15 +27,12 @@ export const httpCacheInterceptor = (options: {
       const {data, ttl} = prevReq;
 
       if (data && ttl && ttl > new Date().getTime()) {
-
-        console.log(requestsMap, data, 'MOCK returned');
         return of(data);
       }
     } else {
       requestsMap.set(key, {
         src: req.url,
         data: new HttpResponse<any>(),
-        params: req.body,
         ttl: getTTL(),
       });
     }

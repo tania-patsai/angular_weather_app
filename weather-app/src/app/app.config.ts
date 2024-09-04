@@ -10,8 +10,7 @@ export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}), provideRouter(routes), provideAnimationsAsync(), provideHttpClient(
     withInterceptors([
       httpCacheInterceptor({
-        //TODO: change ttl to one hour
-        globalTTL: 60000,
+        ttl: 3_600_000,
       }),
     ])
   ),]
