@@ -15,7 +15,7 @@ export const httpCacheInterceptor = (options: {
 }) => {
   const {ttl} = options;
   const fn: HttpInterceptorFn = (req, next) => {
-    const key = req.urlWithParams;
+    const key = req.url;
 
     const prevRequest = () => requestsMap.get(key);
     const getTTL = () => new Date().getTime() + ttl;
@@ -39,7 +39,7 @@ export const httpCacheInterceptor = (options: {
 
     return next(req).pipe(
       catchError(error => {
-        const key = error.urlWithParams;
+        const key = error.url;
 
         if (requestsMap.has(key)) {
           requestsMap.delete(key)

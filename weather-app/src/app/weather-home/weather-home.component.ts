@@ -13,7 +13,9 @@ import {
   catchError,
   debounceTime,
   Observable,
-  of, switchMap, tap
+  of,
+  switchMap,
+  tap
 } from "rxjs";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {WeatherDataService} from "../shared/services/weather-data.service";
@@ -65,9 +67,10 @@ export class WeatherHomeComponent implements OnInit {
   private filter(cityName: string): Observable<any | null> {
     return this.weatherDataService.searchWeather(cityName).pipe(
       catchError(({error}) => {
-        const err = error.cod === '404' ? {invalidCity: true} : {serverErr: true};
+        const errMap = new Map<string, string>([['404', 'invalidCity'], ['400', 'empty']]);
+        const key = errMap.get(error.cod) || 'serverErr';
 
-        this.searchControl.setErrors(err);
+        this.searchControl.setErrors({[key]: true});
 
         return of(null);
       }),

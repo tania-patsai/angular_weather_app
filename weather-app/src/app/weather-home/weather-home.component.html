@@ -1,10 +1,11 @@
 <div class="weather-home">
   <mat-form-field appearance="outline">
-      <mat-label>Please enter city</mat-label>
+      <mat-label>Type city name...</mat-label>
       <input [formControl]="searchControl" matInput type="text"/>
 
       <mat-error *ngIf="searchControl.hasError('invalidCity')">Please enter a valid city</mat-error>
       <mat-error *ngIf="searchControl.hasError('serverErr')">Something went wrong. Please try again</mat-error>
+      <mat-error *ngIf="searchControl.hasError('empty')">Please enter city</mat-error>
     </mat-form-field>
 
   <ng-container *ngIf="!loading && details">
