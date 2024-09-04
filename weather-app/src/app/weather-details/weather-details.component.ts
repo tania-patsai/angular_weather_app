@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AsyncPipe, DatePipe, JsonPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, DatePipe, DecimalPipe, JsonPipe, NgForOf, TitleCasePipe} from "@angular/common";
 import {ICurrentWeatherData} from "../shared/interfaces/weather.interface";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatDivider} from "@angular/material/divider";
@@ -18,7 +18,9 @@ import {Observable, tap} from "rxjs";
     NgForOf,
     DatePipe,
     MatIcon,
-    AsyncPipe
+    AsyncPipe,
+    TitleCasePipe,
+    DecimalPipe
   ],
   templateUrl: './weather-details.component.html',
   styleUrl: './weather-details.component.scss'

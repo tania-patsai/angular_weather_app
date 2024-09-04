@@ -1,3 +1,3 @@
-<div *ngFor="let favorite of favorites$ | async">
-  <app-weather-details [currentWeather]="favorite"></app-weather-details>
+<div class="grid">
+  <app-weather-details *ngFor="let favorite of favorites$ | async" [currentWeather]="favorite"></app-weather-details>
 </div>

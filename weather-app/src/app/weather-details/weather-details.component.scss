@@ -1,33 +1,58 @@
-.card-width {
-  width: fit-content;
-}
-
 .details {
+  position: relative;
+  text-align: center;
   display: flex;
-  margin: 12px;
+  align-items: center;
+  min-width: 450px;
 
-  .city {
-    margin-right: 12px;
-    display: flex;
-    flex-direction: column;
+
+  .favorite {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
   }
 
-  .info {
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-
-    mat-icon {
-      cursor: pointer;
+  .font {
+    &-8 {
+      font-size: 8px;
     }
+
+    &-12 {
+      font-size: 12px;
+    }
+
+    &-16 {
+      font-size: 16px;
+    }
+
+    &-20 {
+      font-size: 20px;
+    }
+
+    &-32 {
+      font-size: 32px;
+    }
+
+    &-56 {
+      font-size: 56px;
+    }
+
+  }
+
+  mat-divider {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 
 .forecast {
   display: flex;
 
-  mat-card {
-    margin: 12px;
+  .item {
+    margin: 8px;
     padding: 8px;
+    border-radius: 4px;
+    background: lightgray;
   }
 }

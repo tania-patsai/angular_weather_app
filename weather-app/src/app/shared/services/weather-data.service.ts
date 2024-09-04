@@ -31,7 +31,6 @@ export class WeatherDataService {
   searchWeather(city: string): Observable<ICurrentWeatherData> {
     return this.weatherApi.getCurrentWeatherByCity(city)
       .pipe(
-        tap(v => console.log(v, 'getCurrentWeatherByCity')),
         switchMap(({
                      name,
                      main: {temp, humidity},
@@ -43,12 +42,12 @@ export class WeatherDataService {
           return this.weatherApi.getWeatherForecast({
             lat,
             lon
-          }).pipe(tap(v => console.log(v, 'getWeatherForecast')),
+          }).pipe(
             map((forecastData) => {
               const [currDay, ...restDays] = getComputedForecastData(forecastData);
 
               return {name, temp, humidity, description, forecast: restDays, date: currDay.dt_txt};
-            }), tap(v => console.log(v, 'return data')),
+            }),
           )
         }));
   }

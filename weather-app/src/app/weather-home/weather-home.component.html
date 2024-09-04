@@ -1,14 +1,14 @@
-<div>Search bar</div>
+<div class="weather-home">
+  <mat-form-field appearance="outline">
+      <mat-label>Please enter city</mat-label>
+      <input [formControl]="searchControl" matInput type="text"/>
 
-<mat-form-field>
-  <input [formControl]="searchControl" matInput type="text"/>
+      <mat-error *ngIf="searchControl.hasError('invalidCity')">Please enter a valid city</mat-error>
+      <mat-error *ngIf="searchControl.hasError('serverErr')">Something went wrong. Please try again</mat-error>
+    </mat-form-field>
 
-  <mat-error *ngIf="searchControl.hasError('invalidCity')">Please enter a valid city</mat-error>
-  <mat-error *ngIf="searchControl.hasError('serverErr')">Something went wrong. Please try again</mat-error>
-</mat-form-field>
-
-
-<ng-container *ngIf="!loading && details">
-  <app-weather-details [currentWeather]="details"></app-weather-details>
-</ng-container>
+  <ng-container *ngIf="!loading && details">
+    <app-weather-details [currentWeather]="details"></app-weather-details>
+  </ng-container>
+</div>
 
