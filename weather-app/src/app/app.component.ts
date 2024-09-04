@@ -12,8 +12,6 @@ import {NgForOf} from "@angular/common";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'weather-app';
-
   readonly navLinks = [
     {
       label: "Home",

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ICurrentWeatherDataDTO, IForecastDTO} from "../interfaces/weather.interface";
-import {API_KEY, API_URL} from "../config";
+import {API_KEY, API_URL} from "../constants/config";
 
 @Injectable({
   providedIn: 'root'
