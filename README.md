@@ -5,7 +5,7 @@ is also able to add city to Favorites tab.
 
 ### Demo
 
-<a target="_blank" href="https://thawing-lake-27685.herokuapp.com/">Demo Link</a>
+<a target="_blank" href="https://tania-patsai.github.io/angular_weather_app/home">Demo Link</a>
 
 ### Scripts
 
