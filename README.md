@@ -9,10 +9,10 @@ is also able to add city to Favorites tab.
 
 ### Scripts
 
-- npm run start - run webpack in production mode and start server;
-- npm run build - build the project. The build artifacts will be stored in the `dist/` directory;
-- npm run test - execute the unit tests;
-- npm run test:coverage - generate test report;
+- ```npm run start``` - run webpack in production mode and start server;
+- ```npm run build``` - build the project. The build artifacts will be stored in the `dist/` directory;
+- ```npm run test``` - execute the unit tests;
+- ```npm run test:coverage``` - generate test report;
 
 ### Features
 
