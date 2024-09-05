@@ -3,8 +3,7 @@
   text-align: center;
   display: flex;
   align-items: center;
-  min-width: 450px;
-
+  width: 100%;
 
   .favorite {
     position: absolute;
@@ -54,5 +53,10 @@
     padding: 8px;
     border-radius: 4px;
     background: lightgray;
+
+    @media only screen and (max-device-width: 480px) {
+      margin: 4px;
+      padding: 4px;
+    }
   }
 }

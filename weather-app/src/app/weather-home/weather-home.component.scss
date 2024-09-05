@@ -9,5 +9,9 @@
     width: 450px;
     max-height: 56px;
     margin-bottom: 32px;
+
+    @media only screen and (max-device-width: 480px) {
+      width: 300px;
+    }
   }
 }
